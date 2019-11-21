@@ -3,9 +3,9 @@ package main
 import (
 	"errors"
 	"fmt"
-	"github.com/MartinHeinz/go-project-blueprint/cmd/blueprint/apis"
-	"github.com/MartinHeinz/go-project-blueprint/cmd/blueprint/config"
-	"github.com/MartinHeinz/go-project-blueprint/cmd/blueprint/httputil"
+	"github.com/eftakhairul/go-api-hack/cmd/apis"
+	"github.com/eftakhairul/go-api-hack/cmd/config"
+	"github.com/eftakhairul/go-api-hack/cmd/httputil"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -15,7 +15,7 @@ import (
 	swaggerFiles "github.com/swaggo/files"
 	"github.com/swaggo/gin-swagger"
 
-	_ "github.com/MartinHeinz/go-project-blueprint/cmd/blueprint/docs"
+	_ "github.com/eftakhairul/go-api-hack/cmd/docs"
 )
 
 // @title Blueprint Swagger API

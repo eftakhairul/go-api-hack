@@ -2,8 +2,8 @@ package test_data
 
 import (
 	"fmt"
-	"github.com/MartinHeinz/go-project-blueprint/cmd/blueprint/config"
-	"github.com/MartinHeinz/go-project-blueprint/cmd/blueprint/models"
+	"github.com/eftakhairul/go-api-hack/cmd/config"
+	"github.com/eftakhairul/go-api-hack/cmd/models"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"io/ioutil"
