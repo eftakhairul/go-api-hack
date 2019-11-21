@@ -4,7 +4,7 @@
 BIN := blueprint
 
 # Where to push the docker image.
-REGISTRY ?= docker.pkg.github.com/martinheinz/go-project-blueprint
+REGISTRY ?= docker.pkg.github.com/eftakhairul/go-api-hack
 
 # This version-strategy uses git tags to set the version string
 VERSION := $(shell git describe --tags --always --dirty)
@@ -31,7 +31,7 @@ TAG := $(VERSION)__$(OS)_$(ARCH)
 
 BUILD_IMAGE ?= golang:1.12-alpine
 # Tweaked image used for test runs (see `test.Dockerfile`)
-TEST_IMAGE ?= martinheinz/golang:1.12-alpine-test
+TEST_IMAGE ?= eftakhairul/golang:1.12-alpine-test
 
 # If you want to build all binaries, see the 'all-build' rule.
 # If you want to build all containers, see the 'all-container' rule.

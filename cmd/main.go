@@ -3,31 +3,32 @@ package main
 import (
 	"errors"
 	"fmt"
+	"log"
+	"net/http"
+
 	"github.com/eftakhairul/go-api-hack/cmd/apis"
 	"github.com/eftakhairul/go-api-hack/cmd/config"
 	"github.com/eftakhairul/go-api-hack/cmd/httputil"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
-	"log"
-	"net/http"
 
 	swaggerFiles "github.com/swaggo/files"
-	"github.com/swaggo/gin-swagger"
+	ginSwagger "github.com/swaggo/gin-swagger"
 
 	_ "github.com/eftakhairul/go-api-hack/cmd/docs"
 )
 
 // @title Blueprint Swagger API
 // @version 1.0
-// @description Swagger API for Golang Project Blueprint.
+// @description Swagger API for Golang API Hack
 // @termsOfService http://swagger.io/terms/
 
 // @contact.name API Support
-// @contact.email martin7.heinz@gmail.com
+// @contact.email eftakhairul@gmail.com
 
 // @license.name MIT
-// @license.url https://github.com/MartinHeinz/go-project-blueprint/blob/master/LICENSE
+// @license.url https://github.com/eftakhairul/go-api-hack/blob/master/LICENSE
 
 // @BasePath /api/v1
 
