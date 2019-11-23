@@ -8,7 +8,7 @@ import (
 
 	"github.com/eftakhairul/go-api-hack/cmd/apis"
 	"github.com/eftakhairul/go-api-hack/cmd/config"
-	"github.com/eftakhairul/go-api-hack/cmd/httputil"
+	"github.com/eftakhairul/go-api-hack/cmd/libs"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -78,11 +78,11 @@ func auth() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		authHeader := c.GetHeader("Authorization")
 		if len(authHeader) == 0 {
-			httputil.NewError(c, http.StatusUnauthorized, errors.New("Authorization is required Header"))
+			libs.NewError(c, http.StatusUnauthorized, errors.New("Authorization is required Header"))
 			c.Abort()
 		}
 		if authHeader != config.Config.ApiKey {
-			httputil.NewError(c, http.StatusUnauthorized, fmt.Errorf("this user isn't authorized to this operation: api_key=%s", authHeader))
+			libs.NewError(c, http.StatusUnauthorized, fmt.Errorf("this user isn't authorized to this operation: api_key=%s", authHeader))
 			c.Abort()
 		}
 		c.Next()
