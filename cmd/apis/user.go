@@ -17,7 +17,7 @@ import (
 // @Router /users/{id} [get]
 // @Security ApiKeyAuth
 func GetUser(c *gin.Context) {
-	s := services.NewUserService(daos.NewUserDAO())
+	s := services.NewUserService(daos.NewUserDAO(c))
 	id, _ := strconv.ParseUint(c.Param("id"), 10, 32)
 	if user, err := s.Get(uint(id)); err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
