@@ -1,8 +1,19 @@
 package libs
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/jinzhu/gorm"
+	"github.com/sirupsen/logrus"
+)
 
-func LoadHTTPEngine() *gin.Engine {
+type AppContext struct {
+	*gin.Context
+	Logger *logrus.Logger
+	DB     *gorm.DB
+}
+
+// LoadHTTPEngine initates gin framework and returns gin engine
+func LoadHTTPEngine(logger *logrus.Logger) *gin.Engine {
 	// Creates a router without any middleware by default
 	engine := gin.New()
 
