@@ -1,5 +1,7 @@
 package middlewares
 
+import "github.com/gin-gonic/gin"
+
 //CORSMiddleware ...
 func CORSMiddleware() gin.HandlerFunc {
 	return func(context *gin.Context) {
@@ -10,10 +12,10 @@ func CORSMiddleware() gin.HandlerFunc {
 		context.Writer.Header().Set("Access-Control-Expose-Headers", "Content-Length")
 		context.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
 
-		if c.Request.Method == "OPTIONS" {
-			c.AbortWithStatus(200)
+		if context.Request.Method == "OPTIONS" {
+			context.AbortWithStatus(200)
 		} else {
-			c.Next()
+			context.Next()
 		}
 	}
 }

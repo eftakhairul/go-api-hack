@@ -1,8 +1,9 @@
 package middlewares
 
-//CORSMiddleware ...
+import "github.com/gin-gonic/gin"
+
 func PrepareBodyMiddleware() gin.HandlerFunc {
 	return func(context *gin.Context) {
-		c.Next()
+		context.Next()
 	}
 }
