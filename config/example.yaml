@@ -1,1 +1,2 @@
-ConfigVar: "Dummy Value"
+hostname: "localhost"
+port: "1234"
