@@ -2,7 +2,6 @@ package test_data
 
 import (
 	"fmt"
-	"github.com/eftakhairul/go-api-hack/cmd/config"
 	"github.com/eftakhairul/go-api-hack/cmd/models"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
@@ -17,13 +16,13 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-	config.Config.DB, config.Config.DBErr = gorm.Open("sqlite3", ":memory:")
+	DB, DBErr = gorm.Open("sqlite3", ":memory:")
 	config.Config.DB.Exec("PRAGMA foreign_keys = ON") // SQLite defaults to `foreign_keys = off'`
 	if config.Config.DBErr != nil {
 		panic(config.Config.DBErr)
 	}
 
-	config.Config.DB.AutoMigrate(&models.User{})
+	DB.AutoMigrate(&models.User{})
 }
 
 // Resets testing database - deletes all tables, creates new ones using GORM migration and populates them using `db.sql` file

@@ -4,7 +4,6 @@ import (
 	"fmt"
 
 	"github.com/eftakhairul/go-api-hack/cmd/apis"
-	"github.com/eftakhairul/go-api-hack/cmd/config"
 	"github.com/eftakhairul/go-api-hack/cmd/libs"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -30,22 +29,24 @@ import (
 // @name Authorization
 func main() {
 	// load application configurations
-	if err := config.LoadConfig("./config"); err != nil {
+	conf, err := config.LoadConfig("./config")
+	if err != nil {
 		panic(fmt.Errorf("invalid application configuration: %s", err))
 	}
 
-	config.Config.DB, config.Config.DBErr = gorm.Open("postgres", config.Config.DSN)
-	if config.Config.DBErr != nil {
-		panic(config.Config.DBErr)
+	//DB, dberr = gorm.Open("postgres", config.Config.DSN)
+	DB, dberr := gorm.Open("sqlite3", "test.db")
+	if dberr != nil {
+		panic(dberr)
 	}
 	// config.Config.DB.AutoMigrate(&models.User{}) // This is needed for generation of schema for postgres image.
-	defer config.Config.DB.Close()
+	defer DB.Close()
 
 	//Intiate Custom logger
 	appLog := libs.LoadAppLog()
 
 	//Initate Gin engine and load routes
-	httpEngine := libs.LoadHTTPEngine(appLog)
+	httpEngine := libs.LoadHTTPEngine(conf, appLog, DB)
 	apis.InitRoutes(httpEngine)
 
 	appLog.Info("Successfully connected to database")

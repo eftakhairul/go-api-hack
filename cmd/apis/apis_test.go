@@ -2,7 +2,6 @@ package apis
 
 import (
 	"bytes"
-	"github.com/eftakhairul/go-api-hack/cmd/config"
 	"github.com/eftakhairul/go-api-hack/cmd/test_data"
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
@@ -27,7 +26,7 @@ type apiTestCase struct {
 func newRouter() *gin.Engine {
 	gin.SetMode(gin.TestMode)
 	router := gin.New()
-	config.Config.DB = test_data.ResetDB()
+	DB = test_data.ResetDB()
 
 	return router
 }
