@@ -5,11 +5,11 @@ import (
 
 	"github.com/eftakhairul/go-api-hack/cmd/test_data"
 	"github.com/stretchr/testify/assert"
-	"testing"
+	"honnef.co/go/tools/config"
 )
 
 func TestUserDAO_Get(t *testing.T) {
-	config.Config.DB = test_data.ResetDB()
+	DB := test_data.ResetDB()
 	dao := NewUserDAO()
 
 	user, err := dao.Get(1)
