@@ -39,5 +39,6 @@ func (dao *UserDAO) Get(id uint) (*models.User, error) {
 
 // Create create a new user into DB
 func (dao *UserDAO) Create(user *models.User) error {
+	dao.DB.AutoMigrate(&models.User{})
 	return dao.DB.Create(user).Error
 }
