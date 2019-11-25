@@ -26,7 +26,7 @@ type apiTestCase struct {
 func newRouter() *gin.Engine {
 	gin.SetMode(gin.TestMode)
 	router := gin.New()
-	DB = test_data.ResetDB()
+	DB := test_data.ResetDB()
 
 	return router
 }

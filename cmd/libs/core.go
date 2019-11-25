@@ -14,7 +14,7 @@ type AppContext struct {
 
 func ginContextToAppContext(config *AppConfig, logger *logrus.Logger, db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		appContext := AppContext{config, logger, db}
+		appContext := &AppContext{config, logger, db}
 		c.Set("appContext", appContext)
 		c.Next()
 	}

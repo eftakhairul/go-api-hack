@@ -1,9 +1,8 @@
 package daos
 
 import (
-	"github.com/eftakhairul/go-api-hack/cmd/models"
 	"github.com/eftakhairul/go-api-hack/cmd/libs"
-	"github.com/gin-gonic/gin"
+	"github.com/eftakhairul/go-api-hack/cmd/models"
 	"github.com/jinzhu/gorm"
 )
 
@@ -13,7 +12,7 @@ type UserDAO struct {
 }
 
 // NewUserDAO creates a new UserDAO
-func NewUserDAO(c libs.AppContext) *UserDAO {
+func NewUserDAO(c *libs.AppContext) *UserDAO {
 	return &UserDAO{DB: c.DB}
 }
 
