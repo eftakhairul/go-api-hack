@@ -1,13 +1,13 @@
 package apis
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"strconv"
 
 	"github.com/eftakhairul/go-api-hack/cmd/daos"
 	"github.com/eftakhairul/go-api-hack/cmd/libs"
+	models "github.com/eftakhairul/go-api-hack/cmd/models"
 	"github.com/eftakhairul/go-api-hack/cmd/services"
 	"github.com/gin-gonic/gin"
 )
@@ -21,9 +21,10 @@ import (
 // @Security ApiKeyAuth
 func GetUserOne(c *gin.Context) {
 	appContext := c.MustGet("appContext").(*libs.AppContext)
-	s := services.NewUserService(daos.NewUserDAO(appContext))
 	id, _ := strconv.ParseUint(c.Param("id"), 10, 32)
-	if user, err := s.Get(uint(id)); err != nil {
+
+	userService := services.NewUserService(daos.NewUserDAO(appContext))
+	if user, err := userService.Get(uint(id)); err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
 		log.Println(err)
 	} else {
@@ -39,14 +40,21 @@ func GetUserOne(c *gin.Context) {
 // @Security ApiKeyAuth
 func PostUser(c *gin.Context) {
 	appContext := c.MustGet("appContext").(*libs.AppContext)
-	appContext.Logger.Info("done")
 
-	user, okay := c.Get("body")
-	if okay {
-		fmt.Println("%v", user)
+	requestBody, ok := c.Get("body")
+	user, ok := requestBody.(*models.User)
+	if !ok {
+		appContext.Logger.Error("error while processing input")
+		c.JSON(http.StatusBadRequest, libs.NewErrorWrapper(http.StatusBadRequest, "input error"))
+		return
 	}
-	fmt.Println("%v", user)
-	c.JSON(http.StatusOK, gin.H{
-		"status": "okay",
-	})
+
+	userService := services.NewUserService(daos.NewUserDAO(appContext))
+	if err := userService.Create(user); err != nil {
+		appContext.Logger.Error("DB insertion failed")
+		c.JSON(http.StatusInternalServerError, libs.NewErrorWrapper(http.StatusInternalServerError, "Internal server error"))
+		return
+	}
+
+	c.Writer.WriteHeader(http.StatusNoContent)
 }

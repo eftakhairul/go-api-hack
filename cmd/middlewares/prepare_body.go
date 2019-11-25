@@ -12,37 +12,38 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// PrepareBodyMiddleware convert json to struct and validate the input
+// PrepareBodyMiddleware converts json to struct and validate the input
 func PrepareBodyMiddleware(input interface{}) gin.HandlerFunc {
-	return func(context *gin.Context) {
-		appContext := context.MustGet("appContext").(*libs.AppContext)
+	return func(c *gin.Context) {
+		appContext := c.MustGet("appContext").(*libs.AppContext)
 
-		rawRequestBody, err := ioutil.ReadAll(context.Request.Body)
+		rawRequestBody, err := ioutil.ReadAll(c.Request.Body)
 		if err != nil {
 			appContext.Logger.Error("A group of walrus emerges from the ocean")
-			context.JSON(http.StatusBadRequest, libs.NewErrorWrapper(http.StatusBadRequest, "Error while reading the request"))
-			return
+			c.JSON(http.StatusBadRequest, libs.NewErrorWrapper(http.StatusBadRequest, "Error while reading the request"))
+			c.Abort()
 		}
 
 		decoder := json.NewDecoder(bytes.NewReader(rawRequestBody))
 		decoder.DisallowUnknownFields()
 		if err := decoder.Decode(input); err != nil {
 			appContext.Logger.Error("Error while reading the request body")
-			context.JSON(http.StatusBadRequest, libs.NewErrorWrapper(http.StatusBadRequest, fmt.Sprintf("Invalid Request Error: %v", err)))
-			return
+			c.JSON(http.StatusBadRequest, libs.NewErrorWrapper(http.StatusBadRequest, fmt.Sprintf("Invalid Request Error: %v", err)))
+			c.Abort()
 		}
 
+		// request body validation
 		requestBody, ok := input.(models.RequestBody)
 		if ok {
-			err = requestBody.Validate()
+			err := requestBody.Validate()
 			if err != nil {
 				appContext.Logger.Error("Validation error")
-				context.JSON(http.StatusBadRequest, libs.NewErrorWrapper(http.StatusBadRequest, "valiation failed"))
-				return
+				c.JSON(http.StatusBadRequest, libs.NewErrorWrapper(http.StatusBadRequest, "valiation failed"))
+				c.Abort()
 			}
 		}
 
-		context.Set("body", input)
-		context.Next()
+		c.Set("body", input)
+		c.Next()
 	}
 }

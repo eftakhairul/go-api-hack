@@ -17,10 +17,12 @@ func InitRoutes(httpEngine *gin.Engine) {
 	//Initate swagger
 	httpEngine.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
+	//Route Group /api/v1
 	v1 := httpEngine.Group("/api/v1")
 	{
 		// Set Authorization middleware only for /v1 endpoints
 		v1.Use(middlewares.AuthorizationMiddleware())
+
 		v1.GET("/users/:id", GetUserOne)
 		v1.POST("/users", middlewares.PrepareBodyMiddleware(&models.User{}), PostUser)
 	}
