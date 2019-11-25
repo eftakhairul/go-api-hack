@@ -1,7 +1,6 @@
 package apis
 
 import (
-	"log"
 	"net/http"
 	"strconv"
 
@@ -26,7 +25,7 @@ func GetUserOne(c *gin.Context) {
 	userService := services.NewUserService(daos.NewUserDAO(appContext))
 	if user, err := userService.Get(uint(id)); err != nil {
 		c.AbortWithStatus(http.StatusNotFound)
-		log.Println(err)
+		appContext.Logger.Error(err)
 	} else {
 		c.JSON(http.StatusOK, user)
 	}

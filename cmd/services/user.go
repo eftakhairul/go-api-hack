@@ -16,7 +16,7 @@ func NewUserService(dao userDAO) *UserService {
 	return &UserService{dao}
 }
 
-//Create create new user by userDAO
+// Create create new user by userDAO
 func (userService *UserService) Create(user *models.User) error {
 	// All the business logic goes here
 	//********************************
