@@ -36,7 +36,7 @@ func main() {
 	appLog := libs.LoadAppLog()
 
 	//DB, dberr = gorm.Open("postgres", config.Config.DSN)
-	DB, dberr := gorm.Open("sqlite3", "test.db")
+	DB, dberr := gorm.Open("sqlite3", conf.DBName)
 	if dberr != nil {
 		panic(dberr)
 	}
