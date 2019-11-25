@@ -10,12 +10,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
-// @title Blueprint Swagger API
-// @version 1.0
-// @description Swagger API for Golang API Hack
-// @termsOfService http://swagger.io/terms/
-
-// @contact.name API Support
+// @contact.name Eftakhairul Islam
 // @contact.email eftakhairul@gmail.com
 
 // @license.name MIT
