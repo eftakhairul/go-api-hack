@@ -3,10 +3,12 @@ package services
 import "github.com/eftakhairul/go-api-hack/cmd/models"
 
 type userDAO interface {
-	Get(id uint) (*models.User, error)
+	Find(id uint) (*models.User, error)
+	FindAll() (*[]models.User, error)
 	Create(user *models.User) error
 }
 
+// UserService Service
 type UserService struct {
 	dao userDAO
 }
@@ -21,10 +23,24 @@ func (userService *UserService) Create(user *models.User) error {
 	// All the business logic goes here
 	//********************************
 	// All the business logic goes here
+
 	return userService.dao.Create(user)
 }
 
-// Get just retrieves user using User DAO, here can be additional logic for processing data retrieved by DAOs
+// GetAll return all the users
+func (userService *UserService) GetAll() (*[]models.User, error) {
+	// All the business logic goes here
+	//********************************
+	// All the business logic goes here
+
+	return userService.dao.FindAll()
+}
+
+// Get just retrieves one user using User DAO
 func (userService *UserService) Get(id uint) (*models.User, error) {
-	return userService.dao.Get(id)
+	// All the business logic goes here
+	//********************************
+	// All the business logic goes here
+
+	return userService.dao.Find(id)
 }

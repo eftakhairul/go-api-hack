@@ -16,29 +16,23 @@ func NewUserDAO(c *libs.AppContext) *UserDAO {
 	return &UserDAO{DB: c.DB}
 }
 
-// Get does the actual query to database, if user with specified id is not found error is returned
-func (dao *UserDAO) Get(id uint) (*models.User, error) {
+// Find does the actual query to database, if user with specified id is not found error is returned
+func (dao *UserDAO) Find(id uint) (*models.User, error) {
 	var user models.User
-
-	// Query Database here...
-
-	//user = models.User{
-	//	Model: models.Model{ID: 1},
-	//	FirstName: "Martin",
-	//	LastName: "Heinz",
-	//	Address: "Not gonna tell you",
-	//	Email: "martin7.heinz@gmail.com"}
-
-	// if using Gorm:
-	err := dao.DB.Where("id = ?", id).
-		First(&user).
-		Error
-
+	err := dao.DB.Where("id = ?", id).First(&user).Error
 	return &user, err
+}
+
+// FindAll returns all the users from DB
+func (dao *UserDAO) FindAll() (*[]models.User, error) {
+	var users []models.User
+	err := dao.DB.Find(&users).Error
+
+	return &users, err
 }
 
 // Create create a new user into DB
 func (dao *UserDAO) Create(user *models.User) error {
-	dao.DB.AutoMigrate(&models.User{})
+	// dao.DB.AutoMigrate(&models.User{})
 	return dao.DB.Create(user).Error
 }

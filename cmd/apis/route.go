@@ -24,6 +24,7 @@ func InitRoutes(httpEngine *gin.Engine) {
 		v1.Use(middlewares.AuthorizationMiddleware())
 
 		v1.GET("/users/:id", GetUserOne)
+		v1.GET("/users", GetUser)
 		v1.POST("/users", middlewares.PrepareBodyMiddleware(&models.User{}), PostUser)
 	}
 }

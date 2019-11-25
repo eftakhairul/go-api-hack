@@ -31,6 +31,24 @@ func GetUserOne(c *gin.Context) {
 	}
 }
 
+// GetUser godoc
+// @Summary Retrieves all user
+// @Produce json
+// @Success 200 {object} []models.User
+// @Router /users [get]
+// @Security ApiKeyAuth
+func GetUser(c *gin.Context) {
+	appContext := c.MustGet("appContext").(*libs.AppContext)
+
+	userService := services.NewUserService(daos.NewUserDAO(appContext))
+	if users, err := userService.GetAll(); err != nil {
+		c.AbortWithStatus(http.StatusNotFound)
+		appContext.Logger.Error(err)
+	} else {
+		c.JSON(http.StatusOK, users)
+	}
+}
+
 // PostUser godoc
 // @Summary Create user based request
 // @Produce json
