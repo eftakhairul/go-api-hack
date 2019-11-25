@@ -29,7 +29,7 @@ func Init() (*libs.AppConfig, *logrus.Logger, *gorm.DB) {
 	return conf, appLog, DB
 }
 
-// Resets testing database - deletes all tables, creates new ones using GORM migration and populates them using `db.sql` file
+// ResetDB testing database - deletes all tables, creates new ones using GORM migration and populates them using `db.sql` file
 func ResetDB(db *gorm.DB) {
 	db.DropTableIfExists(&models.User{}) // Note: Order matters
 	db.AutoMigrate(&models.User{})
@@ -39,11 +39,11 @@ func ResetDB(db *gorm.DB) {
 }
 
 func getSQLFile() string {
-	return "/test_data/db.sql" // on host use absolute path
+	return "../test_data/db.sql" // on host use absolute path
 }
 
 func GetTestCaseFolder() string {
-	return "/test_data/test_case_data" // on host use absolute path
+	return "../test_data/test_case_data" // on host use absolute path
 }
 
 // Executes SQL file specified by file argument

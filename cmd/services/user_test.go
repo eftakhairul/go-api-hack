@@ -2,10 +2,21 @@ package services
 
 import (
 	"errors"
-	"github.com/eftakhairul/go-api-hack/cmd/models"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/eftakhairul/go-api-hack/cmd/libs"
+	"github.com/eftakhairul/go-api-hack/cmd/models"
+	"github.com/jinzhu/gorm"
+	"github.com/stretchr/testify/assert"
 )
+
+func getAppContext() libs.AppContext {
+	conf := &libs.AppConfig{Hostname: "localhost", Port: "1234", DBName: ":memory:"}
+	appLog := libs.LoadAppLog()
+	DB, _ := gorm.Open("sqlite3", ":memory:")
+
+	return libs.AppContext{conf, appLog, DB}
+}
 
 func TestNewUserService(t *testing.T) {
 	dao := newMockUserDAO()
