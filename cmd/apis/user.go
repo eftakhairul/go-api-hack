@@ -12,14 +12,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// GetUser godoc
+// GetUserOne godoc
 // @Summary Retrieves user based on given ID
 // @Produce json
 // @Param id path integer true "User ID"
 // @Success 200 {object} models.User
 // @Router /users/{id} [get]
 // @Security ApiKeyAuth
-func GetUser(c *gin.Context) {
+func GetUserOne(c *gin.Context) {
 	appContext := c.MustGet("appContext").(*libs.AppContext)
 	s := services.NewUserService(daos.NewUserDAO(appContext))
 	id, _ := strconv.ParseUint(c.Param("id"), 10, 32)
@@ -32,10 +32,9 @@ func GetUser(c *gin.Context) {
 }
 
 // PostUser godoc
-// @Summary Retrieves user based on given ID
+// @Summary Create user based request
 // @Produce json
-// @Param id path integer true "User ID"
-// @Success 200 {object} models.User
+// @Success 200 {object}
 // @Router /users [POST]
 // @Security ApiKeyAuth
 func PostUser(c *gin.Context) {

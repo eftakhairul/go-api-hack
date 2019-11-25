@@ -51,6 +51,5 @@ func main() {
 	httpEngine := libs.LoadHTTPEngine(conf, appLog, DB)
 	apis.InitRoutes(httpEngine)
 
-	appLog.Info("App running on  %v:%v", conf.Hostname, conf.Port)
-	httpEngine.Run(fmt.Sprintf(":%v", conf.Port))
+	httpEngine.Run(fmt.Sprintf("%v:%v", conf.Hostname, conf.Port))
 }
