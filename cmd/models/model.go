@@ -1,8 +1,6 @@
 package models
 
-import (
-	"time"
-)
+import "time"
 
 // RequestBody interface for any model that used for validation
 type RequestBody interface {
