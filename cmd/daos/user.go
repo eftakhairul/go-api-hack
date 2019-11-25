@@ -3,11 +3,12 @@ package daos
 import (
 	"github.com/eftakhairul/go-api-hack/cmd/models"
 	"github.com/eftakhairul/go-api-hack/cmd/libs"
+	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 )
 
 // UserDAO persists user data in database
-type UserDAO struct{
+type UserDAO struct {
 	DB *gorm.DB
 }
 

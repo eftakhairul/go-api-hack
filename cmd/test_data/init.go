@@ -2,37 +2,43 @@ package test_data
 
 import (
 	"fmt"
+	"io/ioutil"
+	"strings"
+
+	"github.com/eftakhairul/go-api-hack/cmd/libs"
 	"github.com/eftakhairul/go-api-hack/cmd/models"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
-	"io/ioutil"
-	"strings"
+	"github.com/sirupsen/logrus"
 )
 
 // Initializes application config and SQLite database used for testing
-func init() {
+func Init() (*libs.AppConfig, *logrus.Logger, *gorm.DB) {
 	// the test may be started from the home directory or a subdirectory
-	err := config.LoadConfig("/config") // on host use absolute path
+	// load application configurations
+	conf, err := libs.LoadConfig("./config")
 	if err != nil {
 		panic(err)
 	}
-	DB, DBErr = gorm.Open("sqlite3", ":memory:")
-	config.Config.DB.Exec("PRAGMA foreign_keys = ON") // SQLite defaults to `foreign_keys = off'`
-	if config.Config.DBErr != nil {
-		panic(config.Config.DBErr)
+
+	appLog := libs.LoadAppLog()
+	DB, DBErr := gorm.Open("sqlite3", ":memory:")
+	DB.Exec("PRAGMA foreign_keys = ON") // SQLite defaults to `foreign_keys = off'`
+	if DBErr != nil {
+		panic(DBErr)
 	}
 
 	DB.AutoMigrate(&models.User{})
+	return conf, appLog, DB
 }
 
 // Resets testing database - deletes all tables, creates new ones using GORM migration and populates them using `db.sql` file
-func ResetDB() *gorm.DB {
-	config.Config.DB.DropTableIfExists(&models.User{}) // Note: Order matters
-	config.Config.DB.AutoMigrate(&models.User{})
-	if err := runSQLFile(config.Config.DB, getSQLFile()); err != nil {
+func ResetDB(db *gorm.DB) {
+	db.DropTableIfExists(&models.User{}) // Note: Order matters
+	db.AutoMigrate(&models.User{})
+	if err := runSQLFile(db, getSQLFile()); err != nil {
 		panic(fmt.Errorf("error while initializing test database: %s", err))
 	}
-	return config.Config.DB
 }
 
 func getSQLFile() string {

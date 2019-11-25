@@ -1,7 +1,5 @@
 package libs
 
-import "github.com/spf13/viper"
-
 // Create private data struct to hold config options.
 type AppConfig struct {
 	Hostname string `yaml:"hostname"`
@@ -11,20 +9,20 @@ type AppConfig struct {
 // Read the config file from the current directory and marshal
 // into the conf config struct.
 func LoadConfig(configPath string) (*AppConfig, error) {
-	conf := &AppConfig{}
+	conf := &AppConfig{Hostname: "rain", Port: "1234"}
 
-	viper.AddConfigPath(configPath)
-	viper.SetConfigName("server.yml")
-	err := viper.ReadInConfig()
+	// viper.AddConfigPath(".")
+	// viper.SetConfigName("server.yaml")
+	// err := viper.ReadInConfig()
 
-	if err != nil {
-		return conf, err
-	}
+	// if err != nil {
+	// 	return conf, err
+	// }
 
-	err = viper.Unmarshal(conf)
-	if err != nil {
-		return conf, err
-	}
+	// err = viper.Unmarshal(conf)
+	// if err != nil {
+	// 	return conf, err
+	// }
 
 	return conf, nil
 }

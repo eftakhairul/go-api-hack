@@ -7,7 +7,6 @@ import (
 )
 
 type AppContext struct {
-	*gin.Context
 	Config *AppConfig
 	Logger *logrus.Logger
 	DB     *gorm.DB
@@ -15,9 +14,8 @@ type AppContext struct {
 
 func ginContextToAppContext(config *AppConfig, logger *logrus.Logger, db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
-
-		ctx := AppContext{c, config, logger, db}
-		c.Request = c.Request.WithContext(ctx)
+		appContext := AppContext{config, logger, db}
+		c.Set("appContext", appContext)
 		c.Next()
 	}
 }
