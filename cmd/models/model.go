@@ -11,6 +11,6 @@ type RequestBody interface {
 
 // Model definition same as gorm.Model, but including column and json tags
 type Model struct {
-	ID        uint      `gorm:"primary_key;AUTO_INCREMENT;column:id" json:"id"`
+	ID        uint      `gorm:"AUTO_INCREMENT;primary_key;column:id" json:"id"`
 	CreatedAt time.Time `gorm:"column:created_at" json:"created_at"`
 }
