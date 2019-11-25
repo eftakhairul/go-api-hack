@@ -12,14 +12,11 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-// Initializes application config and SQLite database used for testing
+// Init initializes application config and SQLite database used for testing
 func Init() (*libs.AppConfig, *logrus.Logger, *gorm.DB) {
 	// the test may be started from the home directory or a subdirectory
 	// load application configurations
-	conf, err := libs.LoadConfig("./config")
-	if err != nil {
-		panic(err)
-	}
+	conf := &libs.AppConfig{Hostname: "localhost", Port: "1234", DBName: ":memory:"}
 
 	appLog := libs.LoadAppLog()
 	DB, DBErr := gorm.Open("sqlite3", ":memory:")
