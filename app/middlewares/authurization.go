@@ -2,8 +2,8 @@ package middlewares
 
 import "github.com/gin-gonic/gin"
 
-//AuthorizationMiddleware authorizes request
-func AuthorizationMiddleware() gin.HandlerFunc {
+//Authorization middleware authorizes request
+func Authorization() gin.HandlerFunc {
 	return func(context *gin.Context) {
 		context.Next()
 

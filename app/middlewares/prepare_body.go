@@ -12,8 +12,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// PrepareBodyMiddleware converts json to struct and validate the input
-func PrepareBodyMiddleware(input interface{}) gin.HandlerFunc {
+// PrepareBody Middleware converts json to struct and validate the input
+func PrepareBody(input interface{}) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		appContext := c.MustGet("appContext").(*libs.AppContext)
 

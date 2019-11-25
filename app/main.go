@@ -36,13 +36,13 @@ func main() {
 		panic(dberr)
 	}
 
-	//Intiate Custom logger
+	//Initiate Custom logger
 	appLog.Info("Successfully connected to database")
 
 	// config.Config.DB.AutoMigrate(&models.User{}) // This is needed for generation of schema for postgres image.
 	defer DB.Close()
 
-	//Initate Gin engine and load routes
+	//Initiate Gin engine and load routes
 	httpEngine := libs.LoadHTTPEngine(conf, appLog, DB)
 	apis.InitRoutes(httpEngine)
 
