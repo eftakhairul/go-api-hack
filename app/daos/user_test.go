@@ -3,7 +3,7 @@ package daos
 import (
 	"testing"
 
-	"github.com/eftakhairul/go-api-hack/cmd/test_data"
+	"github.com/eftakhairul/go-api-hack/app/test_data"
 	"github.com/stretchr/testify/assert"
 	"honnef.co/go/tools/config"
 )

@@ -4,10 +4,10 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/eftakhairul/go-api-hack/cmd/daos"
-	"github.com/eftakhairul/go-api-hack/cmd/libs"
-	models "github.com/eftakhairul/go-api-hack/cmd/models"
-	"github.com/eftakhairul/go-api-hack/cmd/services"
+	"github.com/eftakhairul/go-api-hack/app/daos"
+	"github.com/eftakhairul/go-api-hack/app/libs"
+	models "github.com/eftakhairul/go-api-hack/app/models"
+	"github.com/eftakhairul/go-api-hack/app/services"
 	"github.com/gin-gonic/gin"
 )
 

@@ -7,8 +7,8 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/eftakhairul/go-api-hack/cmd/libs"
-	"github.com/eftakhairul/go-api-hack/cmd/models"
+	"github.com/eftakhairul/go-api-hack/app/libs"
+	"github.com/eftakhairul/go-api-hack/app/models"
 	"github.com/gin-gonic/gin"
 )
 

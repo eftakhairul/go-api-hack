@@ -1,7 +1,7 @@
 package apis
 
 import (
-	"github.com/eftakhairul/go-api-hack/cmd/test_data"
+	"github.com/eftakhairul/go-api-hack/app/test_data"
 	"net/http"
 	"testing"
 )

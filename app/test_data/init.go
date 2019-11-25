@@ -5,8 +5,8 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/eftakhairul/go-api-hack/cmd/libs"
-	"github.com/eftakhairul/go-api-hack/cmd/models"
+	"github.com/eftakhairul/go-api-hack/app/libs"
+	"github.com/eftakhairul/go-api-hack/app/models"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"github.com/sirupsen/logrus"

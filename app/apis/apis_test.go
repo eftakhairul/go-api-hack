@@ -2,8 +2,8 @@ package apis
 
 import (
 	"bytes"
-	"github.com/eftakhairul/go-api-hack/cmd/libs"
-	"github.com/eftakhairul/go-api-hack/cmd/test_data"
+	"github.com/eftakhairul/go-api-hack/app/libs"
+	"github.com/eftakhairul/go-api-hack/app/test_data"
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"

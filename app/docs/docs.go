@@ -26,7 +26,7 @@ var doc = `{
         },
         "license": {
             "name": "MIT",
-            "url": "https://github.com/eftakhairul/go-api-hack/cmd/blob/master/LICENSE"
+            "url": "https://github.com/eftakhairul/go-api-hack/app/blob/master/LICENSE"
         },
         "version": "{{.Version}}"
     },

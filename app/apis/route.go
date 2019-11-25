@@ -1,8 +1,8 @@
 package apis
 
 import (
-	"github.com/eftakhairul/go-api-hack/cmd/middlewares"
-	models "github.com/eftakhairul/go-api-hack/cmd/models"
+	"github.com/eftakhairul/go-api-hack/app/middlewares"
+	models "github.com/eftakhairul/go-api-hack/app/models"
 	"github.com/gin-gonic/gin"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"github.com/swaggo/gin-swagger/swaggerFiles"

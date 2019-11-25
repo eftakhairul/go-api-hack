@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
-	"github.com/eftakhairul/go-api-hack/cmd/apis"
-	_ "github.com/eftakhairul/go-api-hack/cmd/docs"
-	"github.com/eftakhairul/go-api-hack/cmd/libs"
+	"github.com/eftakhairul/go-api-hack/app/apis"
+	_ "github.com/eftakhairul/go-api-hack/app/docs"
+	"github.com/eftakhairul/go-api-hack/app/libs"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )

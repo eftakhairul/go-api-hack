@@ -1,6 +1,6 @@
 package services
 
-import "github.com/eftakhairul/go-api-hack/cmd/models"
+import "github.com/eftakhairul/go-api-hack/app/models"
 
 type userDAO interface {
 	Find(id uint) (*models.User, error)
