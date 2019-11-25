@@ -14,7 +14,7 @@ func InitRoutes(httpEngine *gin.Engine) {
 	//health check
 	httpEngine.GET("/health", HealthGET)
 
-	//Initate swagger
+	//Initiate swagger
 	httpEngine.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	//Route Group /api/v1

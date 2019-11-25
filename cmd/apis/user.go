@@ -52,7 +52,7 @@ func GetUser(c *gin.Context) {
 // PostUser godoc
 // @Summary Create user based request
 // @Produce json
-// @Success 200 {object}
+// @Success 200
 // @Router /users [POST]
 // @Security ApiKeyAuth
 func PostUser(c *gin.Context) {

@@ -9,7 +9,7 @@ type AppConfig struct {
 	DBName	string `yaml:"dbname"`
 }
 
-// LoadConfig reads the config file from the current directory and marshal
+// LoadConfig reads the config file from the /config directory and marshal
 // into the conf config struct.
 func LoadConfig(configPath string) (*AppConfig, error) {
 	conf :=  &AppConfig{}

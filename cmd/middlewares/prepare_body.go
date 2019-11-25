@@ -42,6 +42,9 @@ func PrepareBodyMiddleware(input interface{}) gin.HandlerFunc {
 				c.Abort()
 			}
 		}
+        // *************************************************
+		// Same way on demand sanitization is possible here
+		// *************************************************
 
 		c.Set("body", input)
 		c.Next()

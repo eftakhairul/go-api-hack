@@ -13,7 +13,7 @@ type AppContext struct {
 	DB     *gorm.DB
 }
 
-// GinContextToAppContext special type of middlewares which inject AppContext into Gin Context
+// GinContextToAppContext special type of middleware which inject AppContext into Gin Context
 func GinContextToAppContext(config *AppConfig, logger *logrus.Logger, db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		appContext := &AppContext{config, logger, db}
@@ -22,7 +22,7 @@ func GinContextToAppContext(config *AppConfig, logger *logrus.Logger, db *gorm.D
 	}
 }
 
-// LoadHTTPEngine initates gin framework and returns gin engine
+// LoadHTTPEngine initiates gin framework and returns gin engine
 func LoadHTTPEngine(config *AppConfig, logger *logrus.Logger, db *gorm.DB) *gin.Engine {
 	// Creates a router without any middleware by default
 	engine := gin.New()

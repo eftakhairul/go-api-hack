@@ -7,6 +7,8 @@ func AuthorizationMiddleware() gin.HandlerFunc {
 	return func(context *gin.Context) {
 		context.Next()
 
+		// ==================== No required for this demo app =================
+
 		/*
 			authHeader := context.GetHeader("Authorization")
 			if len(authHeader) == 0 {
