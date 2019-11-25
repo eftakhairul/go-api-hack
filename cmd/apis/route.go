@@ -22,6 +22,6 @@ func InitRoutes(httpEngine *gin.Engine) {
 		// Set Authorization middleware only for /v1 endpoints
 		v1.Use(middlewares.AuthorizationMiddleware())
 		v1.GET("/users/:id", GetUser)
-		v1.POST("/users", middlewares.PrepareBodyMiddleware(models.User{}), PostUser)
+		v1.POST("/users", middlewares.PrepareBodyMiddleware(&models.User{}), PostUser)
 	}
 }
